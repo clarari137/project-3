@@ -9,41 +9,61 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
-<body>
+<body style="background-image: linear-gradient(cadetblue,whitesmoke);">
 
   <div class="container">
     <div class="row">
-      <div class="col-md-12 jumbotron text-center">
-        <h1>Walkability Index Dashboard</h1>
-        <p>Use the interactive charts below to explore walkability scores across the U.S.</p>
+      <div class="col-md-12 jumbotron text-center" style="background-color:rgba(124, 116, 116, 0.642)">
+        <h1 style="color:white;">Walkability Index Dashboard</h1>
+        <p style="color:white;">Use the interactive charts below to explore walkability scores across the U.S.</p>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-5">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">API Routes</h3>
+      <div class="col-md-4">
+      <div class="panel panel-primary" style="background-color:white">
+        <div class="panel-heading" style="background-color:black">
+          <h3 class="panel-title" style="color: white">API Routes</h3>
         </div>
-        <ol><b>/api/full-data</b> for full jsonified dataset</ol>
-        <ol><b>/api/demo-data</b> for selected regional aggregates</ol>
+        <ol><b>/api/full-data</b> for JSONified dataset, grouped by CBSA</ol>
+        <ol><b>/api/demo-data</b> for selected regional variables</ol>
         <ol><b>/api/walkability-directory</b> for names of CBSA's with walkability data</ol>
       </div>
     </div>
-  </div>
-      <div class="col-md-5">
-        <div class="well">
-          <h5>Region</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+    <div class="col-md-8">
+      <div class="panel panel-secondary" style="background-color: transparent">
+        <div class="panel-heading">
+          <h3 class="panel-title" style="color: black"> Introduction Description</h3>
         </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">
+        <p style="color: black">Walkability is defined by the accessibility of amenities by foot, that includes walking and biking. 
+          Our dataset includes over 1,000 lines of data, grouping places by their Census Block Group, with information about their name, population, 
+          total land and water acreage, total number of housing units, and the lists goes on. We decided to narrow in on a few variables to analyze, including
+          total population, census block name, walkability index comprised of weighted sum of the ranked values, housing density, number of 
+          housing units, and coordinates of the census block group. These variables were used to create the following visualizations to analyze a few questions:</p>
+          <ol style="color: black">
+            <li>What variables and factors are influencing walkability?</li>
+              <ul>Is population density a factor?</ul>
+              <ul>Is location a factor?</ul>
+            <li>What areas of the U.S. are the most walkable?</li>
+              <ul>States</ul>
+              <ul>Cities</ul>
+          </ol>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="well" style="background-color: black">
+        <h5 style="color:white">Region</h5>
+        <select id="selDataset" onchange="optionChanged(this.value)"></select>
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading" style="background-color:black">
             <h3 class="panel-title">Regional Info</h3>
           </div>
           <div id="sample-metadata" class="panel-body"></div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-7">
           <div id="bar"></div>
         </div>
       </div>
@@ -58,7 +78,7 @@
           </div>
           </div>
     <a href="https://public.tableau.com/app/profile/abraham.brody/viz/Project3visualizations/Dashboard2?publish=yes">
-      <button>Walkability Map</button>
+      <button style="color:black">Walkability Map</button>
     </a>
     <div class="row">
     <div class="col-md-auto">

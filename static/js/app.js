@@ -87,7 +87,9 @@ function initPie(sample){
         title:`Employment Breakdown for <br> ${sample}`,
             font: {size: 12},
         height: 400,
-        width: 500
+        width: 500,
+        paper_bgcolor:'rgba(0,0,0,0)',
+        plot_bgcolor:'rgba(0,0,0,0)'
     };
 
     let data = [tracePie];
@@ -175,7 +177,10 @@ function initBubble(){
             title:{
                 text:'Residential Density (Units/Acre)'
             }
-        }};
+        },
+        paper_bgcolor:'rgba(0,0,0,0)',
+        plot_bgcolor:'rgba(0,0,0,0)'
+    };
 
 Plotly.newPlot("bubble", data, layout)
 })};
