@@ -127,8 +127,14 @@ function initBar(){
                         ticks: {
                             display: false
                         }
+                    },
+                    y: {
+                        title: {
+                          display: true,
+                          text: 'Walkability Index'
                     }
                 }
+            }
             }
         })
     })
