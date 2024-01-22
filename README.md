@@ -29,3 +29,4 @@ Our team chose a dataset with no personal identifiers, and data that was aggrega
 - The majority of our code was based on in-class examples and Challenge 14. The following sources and library documentations were used to help us with specific charts. 
   - https://plotly.com/javascript/pie-charts/
   - https://www.chartjs.org/docs/latest/charts/bar.html
+  - We relied heavily on our instructor Henry Le's code for the app.py and Flask App set-up. 
