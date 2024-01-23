@@ -27,10 +27,8 @@ class Walkability():
         tables = self.inspector.get_table_names()
         for column in inspector.get_columns(tables[0]):
             print(tables[0], column['name'], column['type'])
-
-    # info.meta_info()
    
-    # return all CBSA Names --- TRY TO FILTER/UNIQUE df
+    # return all CBSA Names with pop over 1M
     def get_walkability_name(self):
         session = Session(self.engine)
     
@@ -43,6 +41,7 @@ class Walkability():
         session.close()
         return df.to_dict()
     
+    # return the full dataset in JSON format
     def get_full_data(self):
         session = Session(self.engine)
 
@@ -57,21 +56,23 @@ class Walkability():
         session.close()  
         return df.to_dict(orient='records')
 
-    # get all demo data based on chosen satellite name
+    # get all regional info grouped by CBSA
     def demo_data(self):
         session = Session(self.engine)
 
-        results = session.query(self.MasterRecord.cbsa_name,func.sum(self.MasterRecord.ac_land).label("TotalAcLand"),
-                                func.sum(self.MasterRecord.ac_total).label("TotalAc"), func.sum(self.MasterRecord.ac_water).label("TotalAcWater"),
-                                func.avg(self.MasterRecord.natwalkind).label("AvgWalkInd")).group_by(
-                                self.MasterRecord.cbsa_name).filter(
+        results = session.query(self.MasterRecord.cbsa_name,func.sum(self.MasterRecord.ac_land).label("Total Land Acreage"),
+                                func.sum(self.MasterRecord.ac_total).label("Total Acreage"), 
+                                func.sum(self.MasterRecord.ac_water).label("Total Water Acreage"),
+                                func.avg(self.MasterRecord.natwalkind).label("Average Walkability Index")).group_by(
+                                self.MasterRecord.cbsa_name.label("CBSA_Name")).filter(
                                 self.MasterRecord.cbsa_pop>1000000) 
         df = pd.read_sql(results.statement, session.connection())
 
         session.close()  
 
         return df.to_dict(orient='records')
-
+    
+    # get employment info grouped by CBSA
     def get_pie_data(self):
         session = Session(self.engine)
 
@@ -87,68 +88,6 @@ class Walkability():
 
         session.close()  
         return df.to_dict(orient='records')
-    
-#     # get the lauch date table
-#     def get_launch_date(self):
-#         session = Session(self.engine)
-
-#         results = session.query(self.LaunchDate)
-            
-#         df = pd.read_sql(results.statement, session.connection())
-
-#         session.close()  
-#         return df.to_dict(orient="records")
-    
-
-#     # 40 years of satellite launch counts by country 
-#     def get_40yr_sat_lauch_by_country(self, country_name=""):
-#         session = Session(self.engine)
-
-#         if country_name=="":
-#             results = session.query(self.SatCount40yr)
-#         else:
-#             results = session.query(self.SatCount40yr).filter(self.SatCount40yr.Country_of_Operator_Owner == country_name)
-
-#         df = pd.read_sql(results.statement, session.connection())
-
-#         session.close()  
-#         return df.to_dict(orient="records")
-                      
-#     #  40 years of satellite launch - master records 
-#     def get_40yr_master_record(self):
-#         session = Session(self.engine)
-
-#         results = session.query(self.MasterRecord)
-            
-#         df = pd.read_sql(results.statement, session.connection())
-
-#         session.close()  
-#         return df.to_dict(orient="records")
-
-#     # top 10 launch year, month, and day counts
-#     def get_top10_launch_dates(self):
-#         session = Session(self.engine)
-
-#         results = session.query(self.Top10LaunchDates)
-            
-#         df = pd.read_sql(results.statement, session.connection())
-
-#         session.close()  
-#         return df.to_dict(orient="records")
-
-#     # country satellite counts
-#     def get_countryCount_perYear_perCountry(self, country_name=""):
-#         session = Session(self.engine)
-
-#         if country_name=="":
-#             results = session.query(self.ChoroPlethMap)
-#         else:
-#             results = session.query(self.ChoroPlethMap).filter(self.ChoroPlethMap.Country_of_Operator_Owner == country_name)
-
-#         df = pd.read_sql(results.statement, session.connection())
-
-#         session.close()  
-#         return df.to_dict(orient="records")
 
 
 # # if file is run as main i.e. run from this file, the following commands are executed
@@ -158,11 +97,3 @@ if __name__ == '__main__':
     info.display_db_info()
     info.get_walkability_name()
     # info.meta_info()
-    # print("\nAll Satellite Names:\n", info.get_satellite_names())
-    # print("\nSatellite 1HOPSAT-TD:\n", info.get_demographic_data("1HOPSAT-TD (1st-generation High Optical Performance Satellite)"))
-    # print("\nAll Satellite-Owned Countries\n", info.get_40yr_sat_lauch_by_country())
-    # print("\nAll Satellite-Owned Countries\n", info.get_40yr_sat_lauch_by_country("USA"))
-    # print("\nEntire Database:\n", info.get_40yr_master_record())
-    # print("\nAll Satellite-Owned Countries\n", info.get_launch_date())
-    # print("\nTop 10 Launch Dates\n", info.get_top10_launch_dates())
-    # print("\nGet Country Name by Year\n", info.get_countryCount_perYear_perCountry())

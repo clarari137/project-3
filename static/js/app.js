@@ -17,11 +17,17 @@ function demographics(sample){
 
     // access the panel from index.html
     d3.select("#sample-metadata").html("");
+    
 
     // append each key value pair for a sample to the panel
     Object.entries(result).forEach(function([key,value]){
-        d3.select("#sample-metadata")
-        .append("p").text(`${key}: ${value}`);
+        let sampleMeta = d3.select("#sample-metadata")
+        console.log(`key-value :: ${key}:${value}`);
+        if (key != 'cbsa_name'){
+            sampleMeta.append("p").text(`${key}: ${value.toLocaleString("en-US")}`);
+        }
+        else {sampleMeta.append("p").text(`  `);
+        };
     });
 })};
 
@@ -124,6 +130,10 @@ function initBar(){
             options: {
                 scales: {
                     x: {
+                        title: {
+                            display: true,
+                            text: "Core-Based Statistical Area"
+                        },
                         ticks: {
                             display: false
                         }

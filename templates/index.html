@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
-<body style="background-image: linear-gradient(cadetblue,whitesmoke);">
+<body style="background-image: linear-gradient(rgb(125, 178, 122),whitesmoke);">
 
   <div class="container">
     <div class="row">
@@ -24,9 +24,12 @@
         <div class="panel-heading" style="background-color:black">
           <h3 class="panel-title" style="color: white">API Routes</h3>
         </div>
-        <ol><b>/api/full-data</b> for JSONified dataset, grouped by CBSA</ol>
-        <ol><b>/api/demo-data</b> for selected regional variables</ol>
-        <ol><b>/api/walkability-directory</b> for names of CBSA's with walkability data</ol>
+        <ol><a href="http://127.0.0.1:5000/api/full-data">
+          <b>/api/full-data</b></a> for the full JSONified dataset</ol>
+        <ol><a href="http://127.0.0.1:5000/api/demo-data">
+          <b>/api/demo-data</b></a> for selected regional variables</ol>
+        <ol><a href="http://127.0.0.1:5000/api/walkability-directory">
+          <b>/api/walkability-directory</b></a> for names of CBSA's with walkability data</ol>
       </div>
     </div>
     <div class="col-md-8">
@@ -116,7 +119,7 @@
         <div id="bubble"></div>
         <div class="panel-heading">
           <h3 class="panel-title">Walkability Bubbles</h3>
-          <p>"This bubble plot shows the number of houses in the US for cities with a population of 1,000,000 or larger. 
+          <p>This bubble plot shows the number of houses in the US for cities with a population of 1,000,000 or larger. 
             The bubble plot describes the number of housing units in a city compared to their population, and housing density (housing/acre). 
             The size of the points on the bubble plot is described by how many houses there are in that city compared to how large their population is and also how many developed units there are in a area of land. 
             You may hover over the data points on the chart to get more information regarding that data point."

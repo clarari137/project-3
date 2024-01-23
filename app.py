@@ -35,19 +35,22 @@ def home_page():
     ''' Home Page Access Route'''
     return render_template("index.html")
 
-# route to walkability index
+# route to list of cities with walkability data
 @app.route("/api/walkability-directory")
 def get_all_walkability_name():
     return jsonify(data.get_walkability_name())
 
+# route to full jsonified data
 @app.route("/api/full-data")
 def get_all_full_data():
     return jsonify(data.get_full_data())
 
+# route to data for regional information
 @app.route("/api/demo-data")
 def get_demo_data():
     return jsonify(data.demo_data())
 
+# route to data for pie chart
 @app.route("/api/pie-data")
 def get_all_pie_data():
     return jsonify(data.get_pie_data())
