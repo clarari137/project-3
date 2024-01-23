@@ -204,7 +204,6 @@ Plotly.newPlot("bubble", data, layout)
 // create the function to update charts each time a new sample is selected
 function optionChanged(value){
     initBubble(value),
-    initBar(value),
     demographics(value),
     initPie(value)
 };
