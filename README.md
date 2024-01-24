@@ -26,7 +26,9 @@ Our team chose a dataset with no personal identifiers, and data that was aggrega
 - The PDF in the GitHub main branch also provides a data dictionary, clarifying what each column in the dataset means. 
 
 ## References for any code used that is not your own
-- The majority of our code was based on in-class examples and Challenge 14. The following sources and library documentations were used to help us with specific charts. 
+- The majority of our code was based on in-class examples and Challenge 14. The following sources and library documentations were used to help us with specific charts.
   - https://plotly.com/javascript/pie-charts/
   - https://www.chartjs.org/docs/latest/charts/bar.html
+  - https://stackoverflow.com/questions/29968152/setting-background-color-to-transparent-in-plotly-plots
+  - https://stackoverflow.com/questions/2901102/how-to-format-a-number-with-commas-as-thousands-separators
   - We relied heavily on our instructor Henry Le's code for the app.py and Flask App set-up. 
